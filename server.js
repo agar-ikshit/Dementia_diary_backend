@@ -10,12 +10,19 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
+app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(`https://${req.headers.host}${req.url}`);
+    }
+    next();
+  });
+  
 app.use(cors({
-    origin: '*', // Replace '*' with specific origins if needed (e.g., 'https://example.com')
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
   }));
+
 app.use(bodyParser.json());
 
 // Routes
