@@ -80,7 +80,8 @@ router.put('/:id', verifyToken, async (req, res) => {
 // Delete an entry
 router.delete('/:id', verifyToken, async (req, res) => {
     try {
-        const entry = await Entry.findOne({ _id: req.params.id, userId: req.userId });
+        
+        const entry = await Entry.findOne({ _id: mongoose.Types.ObjectId(req.params.id), userId: req.userId });
         if (!entry) return res.status(404).json({ message: 'Entry not found' });
 
         await entry.remove();
