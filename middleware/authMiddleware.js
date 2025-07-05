@@ -14,7 +14,7 @@ const verifyToken = (req, res, next) => {
     }
     req.user = decoded; // Attach decoded token data to the request
     console.log('Token:', token);
-    console.log('Decoded User:', decoded); // Use 'decoded' here
+    console.log('Decoded User:', decoded); 
     next(); // Proceed to the next middleware or route handler
   });
 };
