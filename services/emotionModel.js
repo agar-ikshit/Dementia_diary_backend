@@ -1,19 +1,15 @@
-import { Client } from "@gradio/client";
+const { Client } = require("@gradio/client");
 
-export default async function detectEmotion(text) {
+async function detectEmotion(text) {
   try {
-    // Connect to your Space
     const client = await Client.connect("ikshit2004/emotion");
-
-    // Call the /predict function
-    const result = await client.predict("/predict", {
-      text: text
-    });
-
-    console.log("Raw result:", result.data[0]);
-    return result.data[0];  // This will be the predicted emotion string
+    const result = await client.predict("/predict", { text });
+    console.log("Raw result:", result.data);
+    return result.data[0];  // Gradio returns array like ['joy'], return first element
   } catch (error) {
     console.error("Error calling Hugging Face emotion model:", error);
     throw new Error("Emotion detection failed");
   }
 }
+
+module.exports = { detectEmotion };
