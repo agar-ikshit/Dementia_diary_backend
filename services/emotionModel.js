@@ -1,18 +1,19 @@
-const axios = require('axios');
+import { Client } from "@gradio/client";
 
-async function detectEmotion(text) {
-    try {
-        const response = await axios.post(
-            'https://ikshit2004-emotion.hf.space/run/predict',
-            { data: [text] }
-        );
+export default async function detectEmotion(text) {
+  try {
+    // Connect to your Space
+    const client = await Client.connect("ikshit2004/emotion");
 
-        // Adjust based on actual response format; typically:
-        return response.data.data[0];
-    } catch (error) {
-        console.error('Error calling Hugging Face emotion model:', error.message);
-        throw new Error('Emotion detection failed');
-    }
+    // Call the /predict function
+    const result = await client.predict("/predict", {
+      text: text
+    });
+
+    console.log("Raw result:", result.data);
+    return result.data;  // This will be the predicted emotion string
+  } catch (error) {
+    console.error("Error calling Hugging Face emotion model:", error);
+    throw new Error("Emotion detection failed");
+  }
 }
-
-module.exports = detectEmotion;
