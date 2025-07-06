@@ -1,6 +1,6 @@
 const express = require('express');
 const verifyToken = require('../middleware/authMiddleware'); 
-const detectEmotion = require("../services/emotionModel.js")
+const {detectEmotion} = require("../services/emotionModel.js")
 const Entry = require('../models/Entry'); 
 
 const router = express.Router();
