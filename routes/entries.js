@@ -1,6 +1,6 @@
 const express = require('express');
 const verifyToken = require('../middleware/authMiddleware'); 
-
+const detectEmotion = require("../services/emotionModel.js")
 const Entry = require('../models/Entry'); 
 
 const router = express.Router();
@@ -9,20 +9,6 @@ router.use(verifyToken);
 const supportedEmotions = [
   "anger", "disgust", "fear", "happy", "joy", "neutral", "sad", "sadness", "shame", "surprise"
 ];
-
-const { Client } = require("@gradio/client");
-
-async function detectEmotion(text) {
-  try {
-    const client = await Client.connect("ikshit2004/emotion"); // replace with your space
-    const result = await client.predict("/predict", { text });
-    console.log("Raw result:", result.data);
-    return result.data; // adjust if needed
-  } catch (error) {
-    console.error("Error calling Hugging Face emotion model:", error);
-    throw new Error('Emotion detection failed');
-  }
-}
 
 // Get all entries
 router.get('/', async (req, res) => {

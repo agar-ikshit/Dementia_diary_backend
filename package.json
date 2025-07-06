@@ -2,6 +2,7 @@
   "name": "dementia_diary_backend",
   "version": "1.0.0",
   "description": "Backend with Node.js + FastAPI (Python ML service)",
+  
   "main": "server.js",
   "scripts": {
     "start": "concurrently \"npm run node\" \"npm run python\"",
