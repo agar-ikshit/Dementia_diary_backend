@@ -10,8 +10,8 @@ export default async function detectEmotion(text) {
       text: text
     });
 
-    console.log("Raw result:", result.data);
-    return result.data;  // This will be the predicted emotion string
+    console.log("Raw result:", result.data[0]);
+    return result.data[0];  // This will be the predicted emotion string
   } catch (error) {
     console.error("Error calling Hugging Face emotion model:", error);
     throw new Error("Emotion detection failed");
