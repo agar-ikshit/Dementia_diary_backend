@@ -6,6 +6,7 @@ It handles user authentication, diary entry management, and integrates with an A
 🌐 **Live demo:** [dementia-diary-frontend.vercel.app](https://dementia-diary-frontend.vercel.app/)  
 🧪 **Emotion detection model (Hugging Face Space):** [ikshit2004/emotion](https://huggingface.co/spaces/ikshit2004/emotion)  
 📦 **Frontend repo:** [Dementia_diary_frontend](https://github.com/agar-ikshit/Dementia_diary_frontend)
+> ⚠️ **Note:** The backend is deployed on [Render](https://render.com/). The first request after some inactivity might take a minute to respond as the server wakes up.
 
 ---
 
